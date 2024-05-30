@@ -15,14 +15,18 @@ class _tutorialState extends State<tutorial> {
 
   List<Marker> getMarkers()
   {
-    return List<Marker>.from(FakeData.fakeLocatiopns.map((e) => new Marker(point: LatLng.LatLng(e.latitud,e.longitud), 
-     child: Column(
-                children: [
-                  Icon(Icons.location_on,size: 40,),
-                  Text("data",style:  TextStyle(fontSize: 12),)
-                  ],
-                ),
-              )
+    return List<Marker>.from(FakeData.fakeLocatiopns.map((e) => new Marker(
+      point: LatLng.LatLng(e.latitud,e.longitud), 
+      width: 80,
+      height: 80,
+      child:  Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.home, color: Colors.green), // icon
+            Text(e.price), // text
+          ],
+        ),
+              ),
           ));
   }
   @override
@@ -30,8 +34,8 @@ class _tutorialState extends State<tutorial> {
     return  Scaffold(
       body: Container(child: FlutterMap(
     options: MapOptions(
-      initialCenter: LatLng.LatLng(51.509364, -0.128928),
-      initialZoom: 9.2,
+      initialCenter: LatLng.LatLng(23.193841, 72.613560),
+      initialZoom: 16,
     ),
     children: [
       TileLayer(
