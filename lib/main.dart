@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:latlong2/latlong.dart';
+import 'secondScreen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -38,6 +40,8 @@ class _MapPageState extends State<MapPage> {
             flags: InteractiveFlag.all,
           ),
           onTap: (_, __) => _popupLayerController.hideAllPopups(),
+          //onLongPress: (tapPosition, point) => Navigator.push(context, MaterialPageRoute(builder: ((context) => secondScreen() ))),
+          //onTap:(tapPosition, point) => Navigator.push(context, MaterialPageRoute(builder: ((context) => secondScreen() ))),
         ),
         children: <Widget>[
           TileLayer(
@@ -53,7 +57,9 @@ class _MapPageState extends State<MapPage> {
                         '../images/Winer-Parisienne.jpg',
                     lat: 48.857661,
                     long: 2.295135,
+                    
                   ),
+                
                 ),
                 const Marker(
                   alignment: Alignment.topCenter,
@@ -61,6 +67,7 @@ class _MapPageState extends State<MapPage> {
                   height: Monument.size,
                   width: Monument.size,
                   child: Icon(Icons.shop),
+                  
                 ),
               ],
               popupController: _popupLayerController,
@@ -127,6 +134,8 @@ class MonumentMarkerPopup extends StatelessWidget {
             Image.network(monument.imagePath, width: 200),
             Text(monument.name),
             Text('${monument.lat}-${monument.long}'),
+            IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: ((context) => secondScreen() ))), 
+            icon: Icon(Icons.home)),
           ],
         ),
       ),
